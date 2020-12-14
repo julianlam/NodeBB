@@ -60,6 +60,7 @@ socket = window.socket;
 		});
 
 		socket.on('event:banned', onEventBanned);
+		socket.on('event:unbanned', onEventUnbanned);
 		socket.on('event:logout', function () {
 			app.logout();
 		});
@@ -184,6 +185,17 @@ socket = window.socket;
 		bootbox.alert({
 			title: '[[error:user-banned]]',
 			message: message,
+			closeButton: false,
+			callback: function () {
+				window.location.href = config.relative_path + '/';
+			},
+		});
+	}
+
+	function onEventUnbanned() {
+		bootbox.alert({
+			title: '[[global:alert.unbanned]]',
+			message: '[[global:alert.unbanned.message]]',
 			closeButton: false,
 			callback: function () {
 				window.location.href = config.relative_path + '/';

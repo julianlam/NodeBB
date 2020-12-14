@@ -53,10 +53,6 @@ module.exports = function (Messaging) {
 			throw new Error('[[error:chat-message-editing-disabled]]');
 		}
 
-		const userData = await user.getUserFields(uid, ['banned']);
-		if (userData.banned) {
-			throw new Error('[[error:user-banned]]');
-		}
 		const canChat = await privileges.global.can('chat', uid);
 		if (!canChat) {
 			throw new Error('[[error:no-privileges]]');
